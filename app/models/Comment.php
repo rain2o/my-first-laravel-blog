@@ -3,8 +3,7 @@
 
 class Comment extends Eloquent {
  
-    public function post()
-    {
+    public function post() {
         return $this->belongsTo('Post');
     }
 }
