@@ -1,19 +1,20 @@
-@layout('templates.main')
+@extends('templates.main')
 @section('content')
-    @if ( Session::has('success_message') )
-        <div class="span8">
-            {{ Alert::success("Success! Post deleted!") }}
+
+    @if(Session::has('success_message'))
+        <div data-alert class="alert-box success radius">
+            {{Session::get('success_message')}} 
         </div>
     @endif
     
-    @foreach ($posts -> results as $post)
+    @foreach ($posts as $post)
         <div class="span8">
             <h1>{{ $post->title }}</h1>
             <p>{{ $post->content }}</p>
             <span class="badge badge-success">Posted {{$post->updated_at}}</span>
             @if ( !Auth::guest() )
-                {{ Form::open('post/'.$post->id, 'DELETE') }}
-                    <p>{{ Form::submit('Delete', array('class' => 'btn-small')) }}</p>
+                {{ Form::open(array('url' => 'post/'.$post->id)) }}
+                    <p>{{ Form::submit('Delete', array('class' => 'button tiny alert')) }}</p>
                 {{ Form::close() }}
             @endif
             <hr />
@@ -23,7 +24,7 @@
 
 @section('pagination')
     <div class="row">
-        <div class="span8">
+        <div class="pagination-centered">
             {{ $posts -> links(); }}
         </div>
     </div>

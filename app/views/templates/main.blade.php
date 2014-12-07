@@ -9,54 +9,63 @@
     <link rel="stylesheet" href="/assets/css/app.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <script src="/assets/vendor/modernizr/modernizr.js"></script>
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/foundation/js/foundation.min.js"></script>
+    <script src="/assets/js/app.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                
-                <a class="brand" href="{{ URL::base() }}">Blog</a>
-                
-                <div class="btn-group pull-right">
-                    @if ( Auth::guest() )
-                        <a class="btn" href="{{ URL::to('login') }}">
-                            <i class="icon-user"></i> Login
-                        </a>
-                    @else
-                        Welcome, <strong>{{ HTML::link('admin', Auth::user()->username) }} </strong> 
-                        | {{HTML::link('logout', 'Logout') }}
+    <div class="contain-to-grid fixed">
+        <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+                <li class="name">
+                  <h1><a href="{{ URL::to('/') }}">Dude, check out my new blog</a></h1>
+                </li>
+                <li class="divider"></li>
+            </ul>
+            
+            <section class="top-bar-section">
+                <ul class="left">
+                    <li class="divider"></li>
+                    <li><a href="{{ URL::to('/') }}">Home</a></li>
+                    @if ( !Auth::guest() )
+                        <li><a href="{{ URL::to('admin') }}">Create Post</a></li>
                     @endif
-                </div><!-/.btn-group pull-right->
+                </ul>
                 
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li><a href="{{ URL::base() }}">Home</a></li>
-                        @if ( !Auth::guest() )
-                            <li><a href="{{ URL::to('admin') }}">Create New</a></li>
-                        @endif
-                    </ul>
-                </div><!-/.nav-collapse->
-                
-            </div><!-/.container-fluid->
-        </div><!-/.navbar-inner->
+                <ul class="right">
+                    @if ( Auth::guest() )
+                        <li class="has-form">
+                            <a href="{{ URL::to('login') }}" class="button">Login</a>
+                        </li>
+                    @else
+                        <li class="name">
+                            <h1 class="welcome">Welcome, </h1>
+                        </li>
+                        <li class="name">
+                            <h1>{{ HTML::link('admin', Auth::user()->username) }}</h1>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="has-form"><a href="{{ URL::to('logout') }}" class="button">Logout</a></li>
+                    @endif
+                </ul>
+            </section>
+            
+        </nav><!-/.navbar-inner->
     </div><!-/.navbar-fixed-top->
     
-    <div class="container">
+    <div class="row">
         <div class="row">
             @yield('content')
         </div>
         @yield('pagination')
     </div><!-/.container->
-    
-    <div class="container">
-        <footer>
-            <p>My Blog &copy; 2014</p>
+    <hr />
+    <div class="row">
+        <footer class="columns large-12 large-centered">
+            <!--div class="small-centered columns small-6"-->
+                <div class="large-2 columns name">Joel Rainwater</div>
+                <div class="large-10 columns" style="border-left: 1px solid #ccc"> &copy; {{ date("Y") }}</div>
+            <!--/div-->
         </footer>
     </div><!-/.container->
 </body>

@@ -1,24 +1,31 @@
-@layout('templates.main')
+@extends('templates.main')
 @section('content')
-    <div class="span4 offset4 well">
-        {{ Form::open('login') }}
-
+    <div class="row">
+        {{ Form::open(array('url' => 'login')) }}
+          <div class="small-5 small-centered columns">
             <!-- check for login errors flash var -->
-            @if ( Session::has('login_errors') )
-                {{ Alert::error('Username or password incorrect.') }}
+            @if(Session::has('message'))
+                <div data-alert class="alert-box alert radius">
+                    {{Session::get('message')}} 
+                </div>
             @endif
             
             <!-- username field -->
-            <p>{{ Form::label('username', 'Username') }}</p>
-            <p>{{ Form::text('username') }}</p>
+            <div class="row">
+                <div class="large-3 columns">{{ Form::label('username', 'Username', array('class' => 'right inline')) }}</div>
+                <div class="large-9 columns">{{ Form::text('username') }}</div>
+            </div>
             
             <!-- password field -->
-            <p>{{ Form::label('password', 'Password') }}</p>
-            <p>{{ Form::password('password') }}</p>
+            <div class="row">
+                <div class="large-3 columns">{{ Form::label('password', 'Password', array('class' => 'right inline')) }}</div>
+                <div class="large-9 columns">{{ Form::password('password', array('class' => 'inline')) }}</div>
+            </div>
             
             <!-- submit form -->
-            <p>{{ Form::submit('Login', array('class' = 'btn-large')) }</p>
-
-        {{ Form:close() }}
+            <div class="row">
+                <div class="large-12 columns">{{ Form::submit('Login', array('class' => 'button')) }}</div>
+          </div>
+        {{ Form::close() }}
     </div>
 @endsection

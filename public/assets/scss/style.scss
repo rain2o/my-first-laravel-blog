@@ -1,9 +1,15 @@
-$color_one: green;
-$color_two: red;
+/*$color_one: green;
+$color_two: red;*/
 
 body {
-    background-color: $color_one;
+    padding: 60px 0px;
+
     .welcome {
-        background-color: $color_two;
+        color: #fff;
+    }
+    
+    footer .name {
+        border-right: 1px solid #ccc;
+        text-align: centered;
     }
 }
