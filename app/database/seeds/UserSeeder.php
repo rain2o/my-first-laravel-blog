@@ -7,22 +7,22 @@ class UserSeeder extends Seeder {
         DB::table('users')->delete();
         User::create(array(
             'username' => 'rain2o',
-            'password' => Hash::make('preston3'),
+            'password' => Hash::make('password'),
             'name' => 'Joel Rainwater'
         ));
         User::create(array(
             'username' => 'admin',
-            'password' => Hash::make('preston3'),
+            'password' => Hash::make('password'),
             'name' => 'Site Admin'
         ));    
         User::create(array(
             'username' => 'bszul',
-            'password' => Hash::make('Pa$$w0rd'),
+            'password' => Hash::make('password'),
             'name' => 'Site Admin'
         ));    
         User::create(array(
             'username' => 'jmills',
-            'password' => Hash::make('Pa$$w0rd'),
+            'password' => Hash::make('password'),
             'name' => 'Jerod Mills'
         ));    
     }
