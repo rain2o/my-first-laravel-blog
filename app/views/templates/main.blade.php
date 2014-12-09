@@ -6,6 +6,7 @@
     <meta name="description" content="My first attempt at a Laravel blog" />
     <meta name="author" content="Joel Rainwater" />
     <title>Dude, check out my new blog</title>
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
     <link rel="stylesheet" href="/assets/css/app.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <script src="/assets/vendor/modernizr/modernizr.js"></script>
