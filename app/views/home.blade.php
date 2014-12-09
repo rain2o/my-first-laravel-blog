@@ -1,6 +1,11 @@
 @extends('templates.main')
 @section('content')
 
+    @if (Route::getCurrentRoute()->getPath()=='author/{username}')
+        <h1>{{ User::find($posts->first()->author)->username }}'s Blog Posts</h1>
+        <hr />
+    @endif
+    
     @if(Session::has('success_message'))
         <div data-alert class="alert-box success radius">
             {{Session::get('success_message')}} 
