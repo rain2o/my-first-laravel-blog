@@ -11,7 +11,8 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'public/assets/css/app.css': 'public/assets/scss/app.scss'
+          'public/assets/css/app.css': 'public/assets/scss/app.scss',
+          'public/assets/css/style.css': 'public/assets/scss/style.scss'
         }
       }
     },
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  //grunt.registerTask('build', ['sass']);
-  grunt.registerTask('build', ['compass']);
+  grunt.registerTask('build', ['sass']);
+  //grunt.registerTask('build', ['compass']);
   grunt.registerTask('default', ['build','watch']);
 }
