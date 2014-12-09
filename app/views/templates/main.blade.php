@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="/assets/css/app.css" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <script src="/assets/vendor/modernizr/modernizr.js"></script>
-    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/vendor/foundation/js/foundation.min.js"></script>
-    <script src="/assets/js/app.js"></script>
 </head>
 <body>
     <div class="contain-to-grid fixed">
@@ -27,6 +24,7 @@
                 <ul class="left">
                     <li class="divider"></li>
                     <li><a href="{{ URL::to('/') }}">Home</a></li>
+                    <li><a href="{{ URL::to('feed') }}">RSS</a></li>
                     @if ( !Auth::guest() )
                         <li><a href="{{ URL::to('admin') }}">Create Post</a></li>
                     @endif
@@ -37,12 +35,16 @@
                         <li class="has-form">
                             <a href="{{ URL::to('login') }}" class="button">Login</a>
                         </li>
+                        <li class="has-form">
+                            <a href="{{ URL::to('signup') }}" class="button secondary ">Sign Up</a>
+                        </li>
                     @else
                         <li class="name">
                             <h1 class="welcome">Welcome, </h1>
                         </li>
                         <li class="name">
-                            <h1>{{ HTML::link('admin', Auth::user()->username) }}</h1>
+                            <?php $username = Auth::user()->username; ?>
+                            <h1>{{ HTML::link('author/'.$username, $username) }}</h1>
                         </li>
                         <li class="divider"></li>
                         <li class="has-form"><a href="{{ URL::to('logout') }}" class="button">Logout</a></li>
@@ -68,5 +70,9 @@
             <!--/div-->
         </footer>
     </div><!-/.container->
+    
+    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/vendor/foundation/js/foundation.min.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>

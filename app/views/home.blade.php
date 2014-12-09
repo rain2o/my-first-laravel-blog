@@ -9,10 +9,14 @@
     
     @foreach ($posts as $post)
         <div class="span8">
-            <h1>{{ $post->title }}</h1>
-            <p>{{ $post->content }}</p>
-            <span class="badge badge-success">Posted {{$post->updated_at}}</span>
-            @if ( !Auth::guest() )
+            <h1><a href="{{ URL::to('posts/'.$post->id) }}">{{ $post->title }}</a></h1>
+            <p>{{ str_limit($post->content, $limit = 255, $end = '...') }}</p>
+            <span class="badge badge-success">
+                <?php $author = User::find($post->author)->username ?>
+                Posted by <a href="{{ URL::to('author/'.$author) }}">{{$author}}</a>
+                    on {{ date("m/d/Y \a\\t h:i A",strtotime($post->updated_at)) }}
+            </span>
+            @if ( !Auth::guest() && Auth::user()->id==$post->author )
                 {{ Form::open(array('url' => 'post/'.$post->id)) }}
                     <p>{{ Form::submit('Delete', array('class' => 'button tiny alert')) }}</p>
                 {{ Form::close() }}
